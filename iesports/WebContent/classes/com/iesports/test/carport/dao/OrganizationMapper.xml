@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+ "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iesports.test.carport.dao.OrganizationMapper">
+	
+	<insert id="insertOrganization" parameterType="Organization">
+		insert into tb_org_carport(org_name, status, apartment_id)
+		values(#{org_name}, #{status}, #{apartment_id})
+	</insert>
+	
+	<select id="selectAllOrganizations" resultType="Organization">
+		select * from tb_org_carport where 1=1 and status=1
+	</select>
+	
+	<select id="selectOrganizationById" parameterType="String" resultType="Organization">
+		select * from tb_org_carport where 1=1 and org_id=#{org_id}
+	</select>
+	
+	<select id="selectOrganizationByApartmentNo" parameterType="String" resultType="Organization">
+		select * from tb_org_carport where apartment_id=
+		(SELECT apartment_id from tb_apartment where apartment_no=#{apartment_no})
+	</select>
+	
+	<select id="selectOrganizationByOrgIdAndStatus1" parameterType="String" resultType="Organization">
+		select * from tb_org_carport where 1=1 and org_id=#{org_id} and status=1
+	</select>
+
+	<update id="updateOrgStatusTo1" parameterType="String">
+		update tb_org_carport set status=1 where org_id=#{org_id}
+	</update>
+	
+	<update id="updateOrgStatusTo0" parameterType="String">
+		update tb_org_carport set status=0 where org_id=#{org_id}
+	</update>
+	
+	<update id="updateOrganizationByOrgId" parameterType="Organization">
+		update tb_org_carport set org_name=#{org_name},
+		status=#{status}, apartment_id=#{apartment_id}
+		where org_id = #{org_id}
+	</update>
+	
+	<delete id="deleteOrganizationByOrgId" parameterType="String">
+		delete from tb_org_carport where org_id = #{org_id}
+	</delete>
+</mapper>

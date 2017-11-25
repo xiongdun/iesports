@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+ "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+ 
+ <!-- 
+ 	namespace : 必须与对应的接口全类名一致
+ 	
+ 	id : 必须与对应接口的某个对应接口名一致
+  -->
+<mapper namespace="com.iesports.dao.mapper.UserInfoMapper">
+	<!-- 插入数据操作 -->
+	<insert id="insertUserInfo" parameterType="UserInfo">
+		insert into t_user_info(login_name, name, password, age, salary, address, phone, idno, email) 
+		values(#{login_name}, #{name}, #{password}, #{age}, #{salary}, #{address}, #{phone}, #{idno}, #{email})
+	</insert>
+	<!-- 查询所有用户信息  -->
+	<select id="selectAll" resultType="UserInfo">
+		select * from t_user_info where 1=1
+	</select>
+	<!-- 按ID查询用户信息 -->
+	<select id="selectById" parameterType="String" resultType="UserInfo">
+		select * from t_user_info where id=#{id}
+	</select>
+	<!-- 按ID删除用户信息 -->
+	<delete id="deleteById" parameterType="String">
+		delete from t_user_info where id=#{id}
+	</delete>
+	<!-- 按用户名查询用户信息 -->
+	<select id="selectByName" parameterType="String" resultType="UserInfo">
+		select * from t_user_info where name=#{name}
+	</select>
+	<!-- 修改记录 -->
+	<update id="updateUserInfo" parameterType="UserInfo">
+		update t_user_info set login_name=#{login_name}, name=#{name}, age=#{age}, salary=#{salary},
+		address=#{address}, phone=#{phone}, idno=#{idno}, email=#{email} where id=#{id}
+	</update>
+	
+	<!-- 修改密码 -->
+	<update id="updatePassword" parameterType="UserInfo">
+		update t_user_info set password=#{password} where id=#{id}
+	</update>
+	
+</mapper>

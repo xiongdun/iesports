@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+ "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.carport.dao.ApartmentMapper">
+	
+	<select id="selectAllApartment" resultType="Apartment">
+		select * from tb_apartment where 1=1 
+	</select>
+	
+	<select id="selectAllApartmentStatus1" resultType="Apartment">
+		select * from tb_apartment where 1=1 and status=1
+	</select>
+	
+	<select id="selectApartmentById" parameterType="String" resultType="Apartment">
+		select * from tb_apartment where 1=1 and apartment_id = #{apartment_id}
+	</select>
+	
+	<select id="selectApartmentByApNo" parameterType="String" resultType="Apartment">
+		select * from tb_apartment where 1=1 and apartment_no =#{apartment_no}
+	</select>
+	
+	<insert id="insertApartment" parameterType="Apartment">
+		insert into tb_apartment(apartment_name, apartment_no, status, carport_nums) 
+		values(#{apartment_name}, #{apartment_no}, #{status}, #{carport_nums})
+	</insert>
+	
+	<update id="updateApartmentStatusTo1ById" parameterType="String">
+		update tb_apartment set status=1 where apartment_id=#{apartment_id}
+	</update>
+	
+	<update id="updateApartmentStatusTo0ById" parameterType="String">
+		update tb_apartment set status=0 where apartment_id=#{apartment_id}
+	</update>
+	
+	<update id="updateApartmentInfoByApId" parameterType="Apartment">
+		update tb_apartment set apartment_name=#{apartment_name},
+		apartment_no=#{apartment_no}, status=#{status}, carport_nums=#{carport_nums}
+		where apartment_id = #{apartment_id}
+	</update>
+	
+	<delete id="deleteApartmentInfoByApId" parameterType="String">
+		delete from tb_apartment where apartment_id = #{apartment_id}
+	</delete>
+</mapper>

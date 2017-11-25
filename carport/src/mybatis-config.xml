@@ -1,0 +1,20 @@
+<!DOCTYPE configuration PUBLIC
+	"-//mybatis.org//DTD Config 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>  
+	<properties resource="config.properties"/>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${datasource.driver}"/>
+				<property name="url" value="${datasource.url}"/>
+				<property name="username" value="${datasource.username}"/>
+				<property name="password" value="${datasource.password}"/>
+				<property name="poolMaximumActiveConnections" value="20"/>
+				<property name="poolPingQuery" value="SELECT user_id FROM tb_user WHERE user_id = 1"/>
+				<property name="poolPingEnabled" value="true"/>
+			</dataSource>
+		</environment>
+	</environments>
+</configuration>

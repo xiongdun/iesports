@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+ "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.carport.dao.UserInfoMapper">
+
+	<insert id="insertUserInfo" parameterType="UserInfo">
+		insert into tb_user(user_name, org_id, status, user_pwd, car_no, reg_time, job_number, apartment_id, is_system)
+		values(#{user_name}, #{org_id}, #{status}, #{user_pwd}, 
+				#{car_no}, #{reg_time}, #{job_number}, #{apartment_id}, 0)
+	</insert>
+	
+	<select id="selectAllUser" resultType="UserInfo">
+		select * from tb_user where 1=1
+	</select>
+	
+	<select id="selectUserInfoByPage" resultType="com.carport.model.UserInfoModel">
+		SELECT
+			a.*, b.org_name,b.apartment_name
+		FROM
+			tb_user a
+		INNER JOIN (
+			SELECT
+				a.*, c.apartment_name
+			FROM
+				tb_org AS a
+			INNER JOIN tb_apartment 
+			AS c ON a.apartment_id = c.apartment_id
+		) b ON a.org_id = b.org_id 
+	</select>
+	
+	<select id="selectUserInfoById" parameterType="String" resultType="UserInfo">
+		select * from tb_user where 1=1 and user_id=#{user_id}
+	</select>
+	
+	<select id="selectUserInfoByCarNo" parameterType="String" resultType="UserInfo">
+		select * from tb_user where 1=1 and car_no=#{car_no}
+	</select>
+	
+	<select id="selectUserInfoByJobNumber" parameterType="String" resultType="UserInfo">
+		select * from tb_user where 1=1 and job_number=#{job_number}
+	</select>
+	
+	<select id="selelctUserInfoByUserName" parameterType="String" resultType="UserInfo">
+		select * from tb_user where user_id in (
+		select user_id from tb_user where user_name =#{user_name}
+		 and job_number=#{user_name} and is_system=1
+			and status=1
+		)
+	</select>
+	
+	<select id="selectUserInfoByOrgId" parameterType="String" resultType="UserInfo">
+		select * from tb_user where 1=1 and org_id=#{org_id} and status=1
+	</select>
+	
+	<select id="selectUserInfoByOrgIdAndUserIdAndApId" parameterType="UserInfo" resultType="UserInfo">
+		select * from tb_user where 1=1 and org_id=#{org_id} 
+		and status=1 and user_id=#{user_id}
+		<if test="apartment_id != null and apartment_id !=''">
+			and apartment_id = #{apartment_id}
+		</if>
+	</select>
+	
+	<select id="selectUserInfoByApId" parameterType="String" resultType="UserInfo">
+		select * from tb_user where 1=1 and apartment_id=#{apartment_id} and status=1	
+	</select>
+	
+	<update id="updateUserStatusTo1ById" parameterType="String">
+		update tb_user set status=1 where user_id=#{user_id}
+	</update>
+	
+	<update id="updateUserStatusTo0ById" parameterType="String">
+		update tb_user set status=0 where user_id =#{user_id}
+	</update>
+	
+	<update id="udpateUserPasswordById" parameterType="UserInfo">
+		update tb_user set user_pwd=#{user_pwd}, reg_time=#{reg_time} where user_id=#{user_id}
+	</update>
+	
+	<update id="udpateUserInfoById" parameterType="UserInfo">
+		update tb_user set user_name=#{user_name}, org_id=#{org_id},
+		status=#{status}, user_pwd=#{user_pwd}, car_no=#{car_no},
+		reg_time=#{reg_time}, job_number=#{job_number}, apartment_id=#{apartment_id},
+		set is_system=#{is_system}
+		where user_id=#{user_id}
+	</update>
+	
+	<delete id="deleteUserInfoByUserId" parameterType="String">
+		delete from tb_user where user_id=#{user_id}
+	</delete>
+</mapper>

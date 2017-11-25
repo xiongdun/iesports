@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+ "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iesports.test.carport.dao.CarportMapper">
+
+	<insert id="insertCarport" parameterType="Carport" useGeneratedKeys="true">
+		insert into tb_carport(carport_no, org_id, status, apartment_id, datetime)
+		values(#{carport_no}, #{org_id}, #{status}, #{apartment_id}, #{datetime})
+	</insert>
+	
+	<select id="selectAllCarport" resultType="Carport">
+		select * from tb_carport where 1=1 and status=1
+	</select>
+	
+	<select id="selectCarportByCarportNo" parameterType="String" resultType="Carport">
+		select * from tb_carport where 1=1 and carport_no=#{carport_no}
+	</select>
+	
+	<select id="selectCarportByOrgId" parameterType="String" resultType="Carport">
+		select * from tb_carport where 1=1 and org_id=#{org_id}
+	</select>
+	
+	<select id="selectCarportByApartmentId" parameterType="String" resultType="Carport">
+		select * from tb_carport where 1=1 and apartment_id=#{apartment_id}
+	</select>
+	
+	<select id="selectCarportByNowDate" parameterType="Carport" resultType="Carport">
+		select * from tb_carport where 1=1 and apartment_id=#{apartment_id}
+		and datetime like CONCAT('%','${datetime}','%') and status=1
+	</select>
+	
+	<select id="selectCarportByOrgIdAndStatus1" parameterType="Carport" resultType="Carport">
+		select * from tb_carport where 1=1 
+		<if test="org_id != null and org_id != ''">
+			and org_id=#{org_id}	
+		</if>
+		and status = 1 
+		and datetime like CONCAT('%','${datetime}','%')
+		and apartment_id=#{apartment_id}
+	</select>
+	
+	<update id="updateCarportStatusTo1" parameterType="String">
+		update tb_carport set status=1 where carport_id=#{carport_id}
+	</update>
+	
+	<update id="updateCarportStatusTo0" parameterType="String">
+		update tb_carport set status=0 where carport_id=#{carport_id}
+	</update>
+	
+	<delete id="deleteCarportByCarportId" parameterType="String">
+		delete from tb_carport where carport_id = #{carport_id}
+	</delete>
+</mapper>

@@ -1,0 +1,89 @@
+1.引用不是安全的
+16 进制转 10进制计算方法
+31B6
+
+3 * (16 ^ 3) + 1 * (16 ^ 2) + 11 * (16 ^ 1) + 6 * (16 ^ 0) =  
+3 * 4096		 + 1 * 256 		+ 11 * 16		+ 6		=
+12288		+		256			+	176			+	6 =12726
+
+8进制转10进制计算方法
+
+73615
+
+7 * (8 ^ 4) + 3 * (8 ^ 3) + 6 * (8 ^ 2) + 1 * (8 * 1) + 5 * (8 * 0) =
+7 * 4096    + 3  * 512    +  6 * 16     + 8    + 5  =
+28672 		+ 1536		  +  96       +  8 + 5=
+
+	方法覆盖发生在同一类中 错误，在一个类中叫重载
+	方法的覆盖发生在子类型中 正确，覆盖发生在之类
+	方法名一定要一样    正确，覆盖方法名必须一样   
+	参数一定要一样    正确，覆盖时方法参数一致
+	返回类型一定要一样    错误，方法的覆盖对返回值的要求是：小于等于父类的返回值
+	访问权限只能一样    错误，方法的覆盖对访问要求是：大于等于父类的访问权限
+	
+	String对String  类型进行改变的时候其实都等同于生成了一个新的  String  对象，
+	然后将指针指向新的  String  对象，而不是StringBuffer；StringBuffer每次结果都会对 
+	 StringBuffer  对象本身进行操作，而不是生成新的对象，再改变对象引用。
+	 
+	 出于运行速率的考虑，java编译器会把经常经常访问的变量放到缓存（严格讲应该是工作内存）中，读取变量则从缓存中读。
+	 但是在多线程编程中,内存中的值和缓存中的值可能会出现不一致。
+	volatile用于限定变量只能从内存中读取，保证对所有线程而言，值都是一致的。
+	 但是volatile不能保证原子性，也就不能保证线程安全。
+	
+	1.get()采用立即加载方式,而load()采用 延迟加载 ; 
+	get()方法执行的时候,会立即向数据库发出查询语句, 而load()方法返回的是一个代理(此代理中只有一个id属性),
+	只有等真正使用该对象属性的时候,才会发出 sql语句 
+	2.如果数据库中没有对应的记录,get()方法返回的是null.
+	而load()方法出现异常ObjectNotFoundException
+	
+	ServerSocket (int port)
+	Creates a server socket, bound to the specified port.
+	
+	Socket(InetAddress address, int port)
+	Creates a stream socket and connects it to the specified port 
+	number at the specified IP address.
+	
+	StringBuffer :
+	length 返回当前长度
+	如果字符串长度没有初始化长度大，capacity返回初始化的长度
+	如果append后的字符串长度超过初始化长度，capacity返回增长后的长度
+	PS:
+	StringBuffer和StringBuilder的默认大小为16
+	ArrayList和LinkedList的默认大小10
+	
+	public Method[] getDeclaredMethods()返回类或接口声明的所有方法，
+		包括public, protected, default (package) 访问和private方法的Method对象，但不包括继承的方法。
+		当然也包括它所实现接口的方法。
+	public Method[] getMethods()返回某个类的所有public方法，包括其继承类的公用方法，当然也包括它所实现接口的方法。
+	
+	
+	Spring 事务管理级别：
+		PROPAGATION_REQUIRED--支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。 
+		PROPAGATION_SUPPORTS--支持当前事务，如果当前没有事务，就以非事务方式执行。 
+		PROPAGATION_MANDATORY--支持当前事务，如果当前没有事务，就抛出异常。 
+		PROPAGATION_REQUIRES_NEW--新建事务，如果当前存在事务，把当前事务挂起。 
+		PROPAGATION_NOT_SUPPORTED--以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。 
+		PROPAGATION_NEVER--以非事务方式执行，如果当前存在事务，则抛出异常。 
+	
+	数值型变量在默认情况下为Int型，byte和short型在计算时会自动转换为int型计算，结果也是int 型
+	byte,short 类型变量在进行计算时，会自动转型为int型
+	
+	java中程序运行时只会抛出一个异常， 但没有 指明
+	是什么异常，三种异常均有可能。对于某个异常，只会被捕获一次
+	try {} catch {} finally {} 只接受一次异常
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,7 @@
+Service层方法的命名规范：
+	只能使用
+		增加：add
+		删除：delete
+		修改：modify
+		查询：query
+		

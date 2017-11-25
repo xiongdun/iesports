@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+ "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iesports.dao.mapper.CityInfoMapper">
+
+	<!-- 多表查询 -->
+	<!-- <select id="getCounty" parameterType="String" resultMap="getCountyMap">
+		select * from t_city_info city,t_county_info county  where city.city_id=county.city_id and city_id=#{id}
+	</select> -->
+	
+	<update id="updateCityInfo">
+		update t_city_info set city_name=#{cityName} where city_id=#{cityId}
+	</update>
+	
+	<select id="selectCityId" parameterType="String" resultType="CityInfo">
+		select * from t_city_info where city_id=#{cityId}
+	</select>
+	
+	<delete id="deleteCityInfoById" parameterType="String">
+		delete t_city_info where city_id=#{cityId}
+	</delete>
+	
+	<insert id="insertCityInfo" parameterType="CityInfo">
+		insert into t_city_info(city_name) values city_name=#{cityName} 
+	</insert>
+	
+	<select id="getCity" parameterType="String" resultMap="getCityMap">
+		select * from t_city_info city,t_county_info county  where city.city_id=county.city_id and city.city_id=#{id}
+	</select>
+	<resultMap type="CityInfo" id="getCityMap">
+		<id property="city_id" column="city_id"/>
+		<result property="city_name" column="city_name"/>
+		<collection property="countys" ofType="CountyInfo">
+			<id property="county_id" column="county_id"/>
+			<result property="county_name" column="county_name"/>
+		</collection>
+	</resultMap>
+</mapper>

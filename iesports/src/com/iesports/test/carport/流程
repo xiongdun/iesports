@@ -1,0 +1,8 @@
+1.工作流程
+
+2.表设计
+tb_carport
+id, 车位号, 机构号, 状态
+tb_carport_history
+tb_user
+tb_org

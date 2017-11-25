@@ -1,0 +1,106 @@
+@CHARSET "UTF-8";
+html, body, div, h1,h2,h3,h4,form,input {
+	margin: 0;
+	padding: 0;
+}
+html, body, h1,h2,h3,h4 {
+	background:blue;
+	width: 100%;
+	height: 100%;
+}
+.content {
+	margin:0 auto;
+	height: 100%;
+	width: 500px;
+}
+.content .logincont {
+	height: 300px;
+	width: 500px;
+	border-radius:10px;
+	position:absolute;
+	top:25%;
+	background: white;
+}
+.content .logincont .formcont form {
+	
+}
+.content .logincont .formcont {
+	margin: 0 auto;
+	height: 80%;
+	width: 329px;
+	background: white;
+}
+
+.content .logincont .formcont .inputbox {
+	height: 39px;
+	width: 329px;
+	border-radius:5px;
+	margin-top: 20px;
+	border:none;
+	overflow: hidden;
+	line-height: 39px;
+	/* vertical-align: middle; */
+}
+.content .logincont .formcont .inputbox:hover {
+	-webkit-transition:border linear .2s,-webkit-box-shadow linear .5s; 
+	/* border-color:rgba(141,39,142,.75);  */
+	border-color:#FF5722;
+	-webkit-box-shadow:0 0 15px #FF5722; 
+}
+.content .logincont .formcont .inputbox input {
+	height: 39px;
+	line-height: 39px;
+	width: 269px;
+	border-radius:5px;
+	margin-top: 10px;
+	border:none;
+	outline: none;
+	float: right;
+	margin-top: 0px;
+	font-size: 18px;
+	vertical-align: top;
+}
+.content .logincont .formcont .submitbox{
+	height: 39px;
+	width: 329px;
+	border-radius:5px;
+	margin-top: 40px;
+	border:none;
+	overflow: hidden;
+	line-height: 39px;
+}
+.content .logincont .formcont .submitbox input {
+	height: 39px;
+	line-height: 39px;
+	width: 269px;
+	border-radius:5px;
+	margin-top: 10px;
+	border:none;
+	outline: none;
+	float: right;
+	margin-top: 0px;
+	font-size: 18px;
+	vertical-align: top;
+}
+.content .logincont .formcont .inputbox ins {
+	height:39px;
+	width:50px;
+	display:block;
+	background:white;
+	display:inline-block;
+	position:relative;
+	z-index: 1000;
+}
+.content .logincont .formcont .inputbox ins:AFTER {
+	content:"";
+	width: 0;
+    height: 0;
+    border-top: 18px solid transparent;
+    border-left: 20px solid white;
+    border-bottom: 20px solid transparent;
+	display:block;
+	position:absolute;
+	right:-7px;
+	z-index: 1;
+	/* border: 1px solid gray; */
+}

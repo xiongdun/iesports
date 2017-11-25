@@ -1,0 +1,8 @@
+Dao层方法的命名规范：按照sql语句中的名称来命名
+	只能使用
+		增加：insert
+		删除：delete
+		修改：update
+		查询：select
+		统计：count
+		

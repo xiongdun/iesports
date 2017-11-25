@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system>
+	<category name="system" description="系统配置">
+		<item name="sysname" value="iesports" description="项目名称"/>
+		<item name="port" value="8080" description="请求端口"/>
+		<item name="nolog_db_flag" value="1" description="是否打印sql参数：1为是，0为否"/>
+		<item name="log_db_maxLength" value="100" description="打印sql参数的最大长度"/>
+		<item name="log_db_maxSelectCount" value="3" description="打印select结果的最大记录数"/>
+		<item name="nolog_db_tables" value="3" description="打印日志的表，多条数据以|做分割"/>
+		<item name="isAutoIncrement" value="1" description="设置自增属性"/>
+		<item name="service_conf_path" value="applicationContext.xml" description="spring上下文内容文件"/>
+	</category>
+	<category name="fileUpload" description="文件上传路径 配置">
+		<item name="headImg" value="asdf" description="用户头像地址"/>
+		<item name="word" value="adsd" description="用户上传的word文档保存地址"/>
+		<item name="uploadFolerName" value="D:\develop\workspace\iesports\WebContent\upload\file\" description="上传文件的持久目录名"/>
+		<item name="tempFolerName" value="D:\develop\workspace\iesports\WebContent\upload\temp\" description="上传文件的临时保存目录"/>
+		<item name="fileMaxSize" value="30000000" description="上传文件大小控制为30M"/>
+		<item name="extensionPermit" value="zip|png|jpg|pdf|txt|xls" description="允许上传的文件后缀名（多个后缀名用‘|’分隔）"/>
+		<item name="encode" value="UTF-8" description="统一的编码格式"/>
+	</category>
+	<category name="redis" description="redis缓存数据库配置">
+		<item name="name" value="iesports" description="连接名"/>
+		<item name="port" value="6793" description="端口号"/>
+	</category>
+	<category name="mongodb" description="mongodb数据库配置">
+		<item name="name" value="iesports" description="连接名"/>
+		<item name="port" value="4323" description="端口号"/>
+	</category>
+</system>

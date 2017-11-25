@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+ "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iesports.test.carport.dao.CarportHistoryMapper">
+	
+	<insert id="insertCarportHistory" parameterType="CarportHistory">
+		insert into tb_carport_history(user_id, org_id, carport_no, apartment_id, status, datetime)
+		values(#{user_id}, #{org_id}, #{carport_no}, #{apartment_id}, #{status}, #{datetime})
+	</insert>
+	
+	<select id="selectAllCarportHistory" resultType="CarportHistory">
+		select * from tb_carport_history where 1=1
+	</select>
+	
+	<select id="selectCarportHistoryByDate" parameterType="String" resultType="CarportHistory">
+		select * from tb_carport_history where 1=1 and datetime like CONCAT('%','${datetime}','%')
+	</select>
+	
+	<select id="selectCaportHistoryByOrgId" parameterType="String" resultType="CarportHistory">
+		select * from tb_carport_history where 1=1 and org_id=#{org_id}
+	</select>
+	
+	<select id="selectCarportHistoryByUserId" parameterType="String" resultType="CarportHistory">
+		select * from tb_carport_history where 1=1 and user_id=#{user_id}
+	</select>
+	
+	<select id="selectCarportHistoryById" parameterType="String" resultType="CarportHistory">
+		select * from tb_carport_history where 1=1 and cphis_id=#{cphis_id}
+	</select>
+	
+	<select id="selectCarportHistoryByUserIdAndDate" parameterType="CarportHistory" resultType="CarportHistory">
+		select * from tb_carport_history where 1=1 and user_id=#{user_id}
+		and status=1 and datetime like CONCAT('%','${datetime}','%' )
+	</select>
+	
+	<delete id="deleteCarportHistoryByCphisId" parameterType="String">
+		delete from tb_carport_history where cphis_id =#{cphis_id}
+	</delete>
+</mapper>

@@ -1,0 +1,5 @@
+controller层方法的命名规范：
+	尽量使用
+		register,login,logout等接近web层的命名方式
+		登陆：login，登陆也是查询
+		
